@@ -6,6 +6,7 @@ const cors = require('cors');
 // Routes
 const authRoutes = require('./routes/auth');
 const movieRoutes = require('./routes/movies');
+const watchlistRoutes = require('./routes/watchlists');
 
 // Create app
 const app = express();
@@ -15,6 +16,7 @@ app.use(cors());
 app.use(express.json());
 app.use('/api/auth', authRoutes);
 app.use('/api/movies', movieRoutes);
+app.use('/api/watchlists', watchlistRoutes);
 
 // DB connection
 mongoose.connect(process.env.MONGO_URI)
