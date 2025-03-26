@@ -1,0 +1,62 @@
+.page {
+    display: flex;
+    padding: 4rem 2rem;
+  }
+  
+  .formBox {
+    background-color: #00333e;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    width: 320px;
+  }
+  
+  h2 {
+    margin-bottom: 1rem;
+    color: white;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  input {
+    padding: 0.6rem 1rem;
+    margin-bottom: 1rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+  
+  .loginButton {
+    background-color: #710133;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 0.8rem 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .loginButton:hover {
+    background-color: #5a002a;
+  }
+  
+  .signupSide {
+    text-align: center;
+    margin-left: 2rem;
+  }
+  
+  .signupSide p {
+    margin-bottom: 1rem;
+    color: black;
+  }
+  
+  .error {
+    color: #ffaaaa;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+  
