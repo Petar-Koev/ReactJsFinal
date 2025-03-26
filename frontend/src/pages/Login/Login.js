@@ -1,20 +1,20 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import api from '../../services/api';
-import useAuth from '../../hooks/useAuth';
-import Button from '../../components/button/Button'
-import styles from './Login.module.css'
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import api from "../../services/api";
+import useAuth from "../../hooks/useAuth";
+import Button from "../../components/button/Button";
+import styles from "./Login.module.css";
 
 export default function Login() {
   const { login } = useAuth();
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
 
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
   const handleChange = (e) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -22,14 +22,14 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
+    setError("");
 
     try {
-      const res = await api.post('/auth/login', formData);
+      const res = await api.post("/auth/login", formData);
       login(res.data.user, res.data.token);
-      navigate('/'); 
+      navigate("/");
     } catch (err) {
-      setError(err.response?.data?.message || 'Login failed');
+      setError(err.response?.data?.message || "Login failed");
     }
   };
 
@@ -58,7 +58,7 @@ export default function Login() {
             onChange={handleChange}
             required
           />
-           <Button text="Sign In" type="submit" />
+          <Button text="Sign In" type="submit" />
         </form>
       </div>
 
