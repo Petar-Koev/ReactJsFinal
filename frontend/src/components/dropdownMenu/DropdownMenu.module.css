@@ -1,0 +1,26 @@
+.dropdown {
+    position: absolute;
+    background: #00333e;
+    border: 1px solid black;
+    border-radius: 8px;
+    padding: 0.5rem;
+    z-index: 10;
+    min-width: 160px;
+    width: max-content;
+  }
+  
+  .dropdownItem {
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 6px;
+  }
+  
+  .dropdownItem:hover {
+    background-color: #710133;
+  }
+  
+  .createItem {
+    border: 1px solid black;
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+  }

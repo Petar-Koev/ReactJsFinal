@@ -1,15 +1,16 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import api from "../../services/api";
 import useAuth from "../../hooks/useAuth";
+import api from "../../services/api";
 import Button from "../../components/button/Button";
-import styles from "./Login.module.css";
+import styles from "./../Login/Login.module.css";
 
-export default function Login() {
+export default function Register() {
   const { login } = useAuth();
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
+    name: "",
     email: "",
     password: "",
   });
@@ -17,7 +18,10 @@ export default function Login() {
   const [error, setError] = useState("");
 
   const handleChange = (e) => {
-    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    setFormData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
   };
 
   const handleSubmit = async (e) => {
@@ -25,22 +29,33 @@ export default function Login() {
     setError("");
 
     try {
-      const res = await api.post("/auth/login", formData);
+      const { email, password } = formData;
+      await api.post("/auth/register", formData);
+      const res = await api.post("/auth/login", { email, password });
       login(res.data.user, res.data.token);
       navigate("/");
     } catch (err) {
-      setError(err.response?.data?.message || "Login failed");
+      setError(err.response?.data?.message || "Registration failed");
     }
   };
 
   return (
     <div className={styles.page}>
       <div className={styles.formBox}>
-        <h2>Log In</h2>
+        <h2>Register</h2>
 
         {error && <p className={styles.error}>{error}</p>}
 
         <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            name="name"
+            placeholder="Name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+          />
+
           <input
             type="email"
             name="email"
@@ -58,13 +73,14 @@ export default function Login() {
             onChange={handleChange}
             required
           />
-          <Button text="Sign In" type="submit" />
+
+          <Button text="Sign Up" type="submit" />
         </form>
         <div className={styles.signupSide}>
           <p>
-            Don’t have an account?
-            <Link className={styles.link} to="/register">
-              Sign Up
+            Already have an account?
+            <Link className={styles.link} to="/login">
+              Sign In
             </Link>
           </p>
         </div>

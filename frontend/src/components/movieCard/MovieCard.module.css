@@ -1,0 +1,53 @@
+.card {
+    display: flex;
+    background-color: #00333e; 
+    border-radius: 16px;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+    color: white;
+    width: 60%;
+  }
+  
+  .poster {
+    width: 250px;
+    height: auto;
+    border-radius: 8px;
+    margin-right: 1rem;
+  }
+  
+  .details {
+    flex: 1;
+  }
+  
+  .title {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .year {
+    font-weight: normal;
+    font-size: 1.5rem;
+  }
+  
+  .actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .heart {
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+
+  .heart:hover {
+    transform: scale(1.2);
+  }
+  
+  .dropdownWrapper {
+    position: relative;
+  }
+
+  

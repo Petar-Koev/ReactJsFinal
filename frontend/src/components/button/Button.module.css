@@ -14,4 +14,8 @@
   .customButton:hover {
     background-color: #5a002a; 
   }
+
+  .customButton .active {
+    background-color: #5a002a; 
+  }
   
