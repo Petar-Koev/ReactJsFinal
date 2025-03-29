@@ -4,7 +4,7 @@ import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import Watchlist from "./pages/Watchlist";
 import WatchlistCatalog from "./pages/WatchlistCatalog";
-import CreateWatchlist from "./pages/CreateWatchlist";
+import CreateWatchlist from "./pages/CreateWatchlist/CreateWatchlist";
 import EditWatchlist from "./pages/EditWatchlist";
 import ContactUs from "./pages/ContactUs";
 import Movies from "./pages/Movies/Movies";
