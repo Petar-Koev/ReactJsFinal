@@ -26,4 +26,26 @@
     font-size: 0.95rem;
     margin-top: 1rem;
   }
+
+  .title {
+    font-size: 1.5rem;
+    color: black;
+    padding-left: 2rem;
+  }
+
+  .cards {
+    padding-left: 2rem;
+  }
+
+  .addWatchlistMain {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .addWatchlistTitle {
+    text-align: center;
+    color: black;
+    margin-bottom: 0px;
+  }
+  
   

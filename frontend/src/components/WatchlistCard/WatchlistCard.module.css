@@ -1,0 +1,36 @@
+.card {
+    background-color: #00333e; 
+    border-radius: 16px;
+    padding: 0.2rem 1rem;
+    margin-bottom: 1.5rem;
+    color: #fff;
+    max-width: fit-content;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+   
+  .posterRow {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .poster {
+    width: 120px;
+    height: 170px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+  .name {
+    font-style: italic;
+    text-align: center;
+  }
+
+  .buttons {
+    display: flex;
+  }
+
+  
+
+
+  

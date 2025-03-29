@@ -43,9 +43,9 @@ router.get("/mine", auth, async (req, res) => {
 // GET /api/watchlists/user-entries
 router.get("/user-entries", auth, async (req, res) => {
   try {
-    console.log("Getting entries for user:", req.user.id); // debug log
-
-    const entries = await WatchlistEntry.find({ userId: req.user.id });
+    const entries = await WatchlistEntry.find({ userId: req.user.id }).populate(
+      "movieId"
+    );
 
     res.json(entries);
   } catch (err) {
