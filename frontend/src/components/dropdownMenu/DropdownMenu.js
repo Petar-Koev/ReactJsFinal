@@ -5,6 +5,7 @@ import styles from "./DropdownMenu.module.css";
 
 export default function DropdownMenu({ movie, handleAddToList }) {
   const { entries, userWatchlists } = useWatchlist();
+
   const navigate = useNavigate();
   const handleCreateRedirect = () => {
     navigate("/create");

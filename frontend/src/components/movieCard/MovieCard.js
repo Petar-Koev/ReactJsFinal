@@ -50,10 +50,12 @@ export default function MovieCard({
   };
 
   const handleAddToList = async (watchlistId) => {
-    const existingEntry = entries.find(
-      (entry) =>
-        entry.movieId === movie._id && entry.watchlistId === watchlistId
-    );
+    const existingEntry = entries.find((entry) => {
+      const entryMovieId =
+        typeof entry.movieId === "string" ? entry.movieId : entry.movieId?._id;
+
+      return entryMovieId === movie._id && entry.watchlistId === watchlistId;
+    });
 
     try {
       if (existingEntry) {

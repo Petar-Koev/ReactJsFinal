@@ -102,6 +102,7 @@ router.post("/:id/entries", auth, async (req, res) => {
     movieId: req.body.movieId,
     userId: req.user.id,
   });
+  await entry.populate("movieId");
   res.status(201).json(entry);
 });
 

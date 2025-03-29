@@ -19,20 +19,14 @@ export function WatchlistProvider({ children }) {
       .catch((err) => console.error("Watchlists fetch error", err));
   }, [isAuthenticated, user]);
 
-  const refreshEntries = async () => {
-    try {
-      const res = await api.get("/watchlists/user-entries");
-      setEntries(res.data);
-    } catch (err) {
-      console.error("Entries fetch error", err);
-    }
-  };
-
   // Fetch entries
   useEffect(() => {
-    if (isAuthenticated) {
-      refreshEntries();
-    }
+    if (!isAuthenticated) return;
+
+    api
+      .get("/watchlists/user-entries")
+      .then((res) => setEntries(res.data))
+      .catch((err) => console.error("Entries fetch error", err));
   }, [isAuthenticated, user]);
 
   const addEntry = async (watchlistId, movieId) => {
@@ -56,7 +50,6 @@ export function WatchlistProvider({ children }) {
         setEntries,
         addEntry,
         removeEntry,
-        refreshEntries,
       }}
     >
       {children}

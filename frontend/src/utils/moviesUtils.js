@@ -16,7 +16,10 @@ export function sortMovies(movies, option) {
 }
 
 export function isInWatchlist(watchlistId, entries, movie) {
-  return entries?.some(
-    (entry) => entry.watchlistId === watchlistId && entry.movieId === movie._id
-  );
+  return entries?.some((entry) => {
+    const entryMovieId =
+      typeof entry.movieId === "string" ? entry.movieId : entry.movieId?._id;
+
+    return entry.watchlistId === watchlistId && entryMovieId === movie._id;
+  });
 }
