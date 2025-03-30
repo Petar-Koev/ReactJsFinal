@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import api from "../../services/api";
 import Button from "../../components/button/Button";
 import useWatchlist from "../../hooks/useWatchlist";
 import styles from "../CreateWatchlist/CreateWatchlist.module.css";
 
 export default function EditWatchlist() {
-  const { setUserWatchlists, userWatchlists } = useWatchlist();
+  const { userWatchlists, updateWatchlist } = useWatchlist();
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -47,10 +46,7 @@ export default function EditWatchlist() {
     }
 
     try {
-      const res = await api.put(`/watchlists/${id}`, formData);
-      setUserWatchlists((prev) =>
-        prev.map((w) => (w._id === id ? res.data : w))
-      );
+      await updateWatchlist(id, formData);
       navigate("/");
     } catch (err) {
       console.error("Failed to update watchlist", err);

@@ -41,6 +41,28 @@ export function WatchlistProvider({ children }) {
     setEntries((prev) => prev.filter((e) => e._id !== entryId));
   };
 
+  const createWatchlist = async (data) => {
+    const res = await api.post("/watchlists", data);
+    setUserWatchlists((prev) => [...prev, res.data]);
+    return res.data;
+  };
+
+  const updateWatchlist = async (id, data) => {
+    const res = await api.put(`/watchlists/${id}`, data);
+    setUserWatchlists((prev) => prev.map((w) => (w._id === id ? res.data : w)));
+    return res.data;
+  };
+
+  const deleteWatchlist = async (id) => {
+    try {
+      await api.delete(`/watchlists/${id}`);
+      setUserWatchlists((prev) => prev.filter((w) => w._id !== id));
+      setEntries((prev) => prev.filter((e) => e.watchlistId !== id));
+    } catch (err) {
+      console.error("Failed to delete watchlist", err);
+    }
+  };
+
   return (
     <WatchlistContext.Provider
       value={{
@@ -50,6 +72,9 @@ export function WatchlistProvider({ children }) {
         setEntries,
         addEntry,
         removeEntry,
+        deleteWatchlist,
+        createWatchlist,
+        updateWatchlist,
       }}
     >
       {children}

@@ -87,11 +87,13 @@ router.get("/:id", async (req, res) => {
 // Delete watchlist
 router.delete("/:id", auth, async (req, res) => {
   const list = await Watchlist.findById(req.params.id);
+  if (!list) return res.status(404).json({ message: "Not found" });
   if (!list || list.user.toString() !== req.user.id) {
     return res.status(403).json({ message: "Not authorized" });
   }
 
   await list.deleteOne();
+  await WatchlistEntry.deleteMany({ watchlistId: req.params.id });
   res.sendStatus(204);
 });
 

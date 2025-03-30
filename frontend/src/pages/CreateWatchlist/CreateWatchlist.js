@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useWatchlist from "../../hooks/useWatchlist";
 import Button from "../../components/button/Button";
-import api from "../../services/api";
 import styles from "./CreateWatchlist.module.css";
 
 export default function CreateWatchlist() {
@@ -13,7 +12,7 @@ export default function CreateWatchlist() {
   });
 
   const [error, setError] = useState("");
-  const { setUserWatchlists } = useWatchlist();
+  const { createWatchlist } = useWatchlist();
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -38,8 +37,7 @@ export default function CreateWatchlist() {
     }
 
     try {
-      const res = await api.post("/watchlists", formData);
-      setUserWatchlists((prev) => [...prev, res.data]);
+      await createWatchlist(formData);
       navigate("/");
     } catch (err) {
       console.error("Failed to create watchlist", err);

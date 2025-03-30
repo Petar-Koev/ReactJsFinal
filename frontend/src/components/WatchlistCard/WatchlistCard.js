@@ -1,7 +1,14 @@
 import Button from "../button/Button";
+import useWatchlists from "../../hooks/useWatchlist";
 import styles from "./WatchlistCard.module.css";
 
 export default function WatchlistCard({ list, entries }) {
+  const { deleteWatchlist } = useWatchlists();
+
+  const handleDelete = () => {
+    deleteWatchlist(list._id);
+  };
+
   const posterPlaceholder =
     "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/coming-soon-instagram-post-design-template-7f191da00465c7deac30cfd49313e5f6_screen.jpg?ts=1704369684";
 
@@ -34,7 +41,7 @@ export default function WatchlistCard({ list, entries }) {
       <div className={styles.buttons}>
         <Button text="Open" to={`/watchlists/${list._id}`} />
         <Button text="Edit" to={`/watchlists/${list._id}/edit`} />
-        <Button text="Delete" />
+        <Button text="Delete" onClick={handleDelete} />
       </div>
     </div>
   );
