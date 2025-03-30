@@ -5,7 +5,7 @@ import Register from "./pages/Register/Register";
 import Watchlist from "./pages/Watchlist";
 import WatchlistCatalog from "./pages/WatchlistCatalog";
 import CreateWatchlist from "./pages/CreateWatchlist/CreateWatchlist";
-import EditWatchlist from "./pages/EditWatchlist";
+import EditWatchlist from "./pages/EditWatchlist/EditWatchlist";
 import ContactUs from "./pages/ContactUs";
 import Movies from "./pages/Movies/Movies";
 import Navbar from "./components/navbar/Navbar";

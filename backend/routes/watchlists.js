@@ -95,6 +95,27 @@ router.delete("/:id", auth, async (req, res) => {
   res.sendStatus(204);
 });
 
+// PUT /watchlists/:id
+router.put("/:id", auth, async (req, res) => {
+  const watchlist = await Watchlist.findById(req.params.id);
+
+  if (!watchlist) {
+    return res.status(404).json({ message: "Watchlist not found" });
+  }
+
+  if (watchlist.user.toString() !== req.user.id) {
+    return res.status(403).json({ message: "Not authorized" });
+  }
+
+  watchlist.name = req.body.name;
+  watchlist.description = req.body.description;
+  watchlist.type = req.body.type;
+
+  await watchlist.save();
+
+  res.json(watchlist);
+});
+
 // Add a movie to a watchlist
 router.post("/:id/entries", auth, async (req, res) => {
   const entry = await WatchlistEntry.create({
