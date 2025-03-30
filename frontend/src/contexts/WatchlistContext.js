@@ -41,6 +41,21 @@ export function WatchlistProvider({ children }) {
     setEntries((prev) => prev.filter((e) => e._id !== entryId));
   };
 
+  const toggleWatched = async (entryId, currentStatus) => {
+    try {
+      const res = await api.patch(`/watchlists/entries/${entryId}`, {
+        watched: !currentStatus,
+      });
+      const updatedEntry = res.data;
+
+      setEntries((prev) =>
+        prev.map((e) => (e._id === entryId ? updatedEntry : e))
+      );
+    } catch (err) {
+      console.error("Failed to toggle watched", err);
+    }
+  };
+
   const createWatchlist = async (data) => {
     const res = await api.post("/watchlists", data);
     setUserWatchlists((prev) => [...prev, res.data]);
@@ -75,6 +90,7 @@ export function WatchlistProvider({ children }) {
         deleteWatchlist,
         createWatchlist,
         updateWatchlist,
+        toggleWatched,
       }}
     >
       {children}

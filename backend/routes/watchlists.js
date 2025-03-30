@@ -145,6 +145,7 @@ router.patch("/entries/:entryId", auth, async (req, res) => {
   }
   entry.watched = req.body.watched;
   await entry.save();
+  await entry.populate("movieId");
   res.json(entry);
 });
 

@@ -1,0 +1,43 @@
+.card {
+    display: flex;
+    padding: 1rem;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    background-color: #1b2e3c;
+    color: #fff;
+    width: 30%;
+  }
+  
+  .poster {
+    width: 70px;
+    height: auto;
+    border-radius: 6px;
+    margin-right: 1rem;
+  }
+  
+  .details {
+    flex-grow: 1;
+  }
+  
+  .details h3 {
+    margin: 0;
+    font-size: 1.2rem;
+  }
+  
+  .details p {
+    margin: 0.3rem 0;
+  }
+  
+  .added {
+    font-style: italic;
+    color: #bbb;
+  }
+
+  .remove {
+    background: transparent;
+    border: none;
+    color: #ff4d4d;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  
