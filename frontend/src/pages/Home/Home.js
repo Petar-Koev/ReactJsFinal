@@ -39,6 +39,7 @@ export default function Home() {
                     key={list._id}
                     list={list}
                     entries={listEntries}
+                    isPublic={false}
                   />
                 );
               })}

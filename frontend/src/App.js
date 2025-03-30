@@ -3,7 +3,7 @@ import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import Watchlist from "./pages/Watchlist/Watchlist";
-import WatchlistCatalog from "./pages/WatchlistCatalog";
+import WatchlistCatalog from "./pages/WatchlistCatalog/WatchlistCatalog";
 import CreateWatchlist from "./pages/CreateWatchlist/CreateWatchlist";
 import EditWatchlist from "./pages/EditWatchlist/EditWatchlist";
 import ContactUs from "./pages/ContactUs";

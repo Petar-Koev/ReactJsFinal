@@ -7,8 +7,6 @@ export function sortMovies(movies, option) {
         return a.name.localeCompare(b.name);
       case SortOptions.YEAR:
         return b.year - a.year;
-      case SortOptions.GENRE:
-        return a.genre.localeCompare(b.genre);
       default:
         return 0;
     }

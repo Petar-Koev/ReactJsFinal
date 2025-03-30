@@ -2,7 +2,7 @@ import Button from "../button/Button";
 import useWatchlists from "../../hooks/useWatchlist";
 import styles from "./WatchlistCard.module.css";
 
-export default function WatchlistCard({ list, entries }) {
+export default function WatchlistCard({ list, entries, isPublic }) {
   const { deleteWatchlist } = useWatchlists();
 
   const handleDelete = () => {
@@ -39,9 +39,16 @@ export default function WatchlistCard({ list, entries }) {
       <p className={styles.name}>{list.name}</p>
       <div className={styles.posterRow}>{posters}</div>
       <div className={styles.buttons}>
-        <Button text="Open" to={`/watchlists/${list._id}`} />
-        <Button text="Edit" to={`/watchlists/${list._id}/edit`} />
-        <Button text="Delete" onClick={handleDelete} />
+        <Button
+          text="Open"
+          to={`/watchlists/${list._id}?isPublic=${isPublic}`}
+        />
+        {!isPublic && (
+          <>
+            <Button text="Edit" to={`/watchlists/${list._id}/edit`} />
+            <Button text="Delete" onClick={handleDelete} />
+          </>
+        )}
       </div>
     </div>
   );

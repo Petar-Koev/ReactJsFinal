@@ -1,6 +1,11 @@
 import styles from "./EntryCard.module.css";
 
-export default function EntryCard({ entry, onToggleWatched, onRemove }) {
+export default function EntryCard({
+  entry,
+  onToggleWatched,
+  onRemove,
+  isPublic,
+}) {
   const { movieId: movie, createdAt, watched } = entry;
 
   return (
@@ -14,22 +19,23 @@ export default function EntryCard({ entry, onToggleWatched, onRemove }) {
           Added: {new Date(createdAt).toLocaleDateString()}
         </p>
       </div>
-
-      <div className={styles.actions}>
-        <input
-          type="checkbox"
-          checked={watched}
-          onChange={onToggleWatched}
-          title="Mark as watched"
-        />
-        <button
-          onClick={onRemove}
-          title="Remove entry"
-          className={styles.remove}
-        >
-          ✖
-        </button>
-      </div>
+      {!isPublic && (
+        <div className={styles.actions}>
+          <input
+            type="checkbox"
+            checked={watched}
+            onChange={onToggleWatched}
+            title="Mark as watched"
+          />
+          <button
+            onClick={onRemove}
+            title="Remove entry"
+            className={styles.remove}
+          >
+            ✖
+          </button>
+        </div>
+      )}
     </div>
   );
 }

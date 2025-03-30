@@ -11,6 +11,12 @@ export default function Movies() {
   const [movies, setMovies] = useState([]);
   const [openDropdownId, setOpenDropdownId] = useState(null);
   const [sortOption, setSortOption] = useState("title");
+  const [selectedGenre, setSelectedGenre] = useState("All");
+
+  const filteredMovies =
+    selectedGenre === "All"
+      ? movies
+      : movies.filter((movie) => movie.genre === selectedGenre);
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -24,7 +30,7 @@ export default function Movies() {
     fetchMovies();
   }, []);
 
-  const sortedMovies = sortMovies(movies, sortOption);
+  const sortedMovies = sortMovies(filteredMovies, sortOption);
 
   return (
     <div className={styles.page}>
@@ -41,12 +47,24 @@ export default function Movies() {
           text={"Year"}
           onClick={() => setSortOption("year")}
         />
-        <Button
-          className={sortOption === SortOptions.GENRE ? styles.active : ""}
-          text={"Genre"}
-          onClick={() => setSortOption("genre")}
-        />
       </div>
+      <div className={styles.filterControls}>
+        <label htmlFor="genreSelect">Filter by Genre:</label>
+        <select
+          id="genreSelect"
+          value={selectedGenre}
+          onChange={(e) => setSelectedGenre(e.target.value)}
+        >
+          <option value="All">All</option>
+          <option value="Drama">Drama</option>
+          <option value="Sci-Fi">Sci-Fi</option>
+          <option value="Mystery">Mystery</option>
+          <option value="Comedy">Comedy</option>
+          <option value="Comedy">Action</option>
+          <option value="Comedy">Crime</option>
+        </select>
+      </div>
+
       {sortedMovies.map((movie) => (
         <MovieCard
           key={movie._id}

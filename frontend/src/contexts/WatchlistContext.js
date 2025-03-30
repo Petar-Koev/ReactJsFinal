@@ -8,6 +8,31 @@ export function WatchlistProvider({ children }) {
   const { isAuthenticated, user } = useAuth();
   const [userWatchlists, setUserWatchlists] = useState([]);
   const [entries, setEntries] = useState([]);
+  const [publicWatchlists, setPublicWatchlists] = useState([]);
+  const [publicEntries, setPublicEntries] = useState([]);
+
+  useEffect(() => {
+    const loadPublicData = async () => {
+      try {
+        const listsRes = await api.get("/watchlists");
+        const watchlists = listsRes.data;
+        setPublicWatchlists(watchlists);
+
+        const entryPromises = watchlists.map((w) =>
+          api.get(`/watchlists/${w._id}/entries`)
+        );
+
+        const allResponses = await Promise.all(entryPromises);
+        const entries = allResponses.flatMap((res) => res.data);
+
+        setPublicEntries(entries);
+      } catch (err) {
+        console.error("Failed to load public watchlists or entries", err);
+      }
+    };
+
+    loadPublicData();
+  }, []);
 
   // Fetch user watchlists
   useEffect(() => {
@@ -91,6 +116,8 @@ export function WatchlistProvider({ children }) {
         createWatchlist,
         updateWatchlist,
         toggleWatched,
+        publicEntries,
+        publicWatchlists,
       }}
     >
       {children}
