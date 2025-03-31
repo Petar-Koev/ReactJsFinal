@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
-import api from "../services/api";
 import useAuth from "../hooks/useAuth";
+import api from "../services/api";
 
 const WatchlistContext = createContext();
 
@@ -11,11 +11,12 @@ export function WatchlistProvider({ children }) {
   const [publicWatchlists, setPublicWatchlists] = useState([]);
   const [publicEntries, setPublicEntries] = useState([]);
 
+  // Load public watchlists and their entries.
   useEffect(() => {
-    const loadPublicData = async () => {
+    const loadPublicWatchlists = async () => {
       try {
-        const listsRes = await api.get("/watchlists");
-        const watchlists = listsRes.data;
+        const result = await api.get("/watchlists");
+        const watchlists = result.data;
         setPublicWatchlists(watchlists);
 
         const entryPromises = watchlists.map((w) =>
@@ -31,10 +32,10 @@ export function WatchlistProvider({ children }) {
       }
     };
 
-    loadPublicData();
+    loadPublicWatchlists();
   }, []);
 
-  // Fetch user watchlists
+  // Fetch user watchlists.
   useEffect(() => {
     if (!isAuthenticated) return;
 
@@ -44,7 +45,7 @@ export function WatchlistProvider({ children }) {
       .catch((err) => console.error("Watchlists fetch error", err));
   }, [isAuthenticated, user]);
 
-  // Fetch entries
+  // Fetch user entries.
   useEffect(() => {
     if (!isAuthenticated) return;
 

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useWatchlist from "../../hooks/useWatchlist";
-import Button from "../../components/button/Button";
+import ButtonGroup from "../../components/buttonGroup/ButtonGroup";
 import styles from "./CreateWatchlist.module.css";
 
 export default function CreateWatchlist() {
@@ -32,6 +32,10 @@ export default function CreateWatchlist() {
       return setError("All fields are required.");
     }
 
+    if (formData.name.length > 50) {
+      return setError("Name must be less than 50 characters.");
+    }
+
     if (formData.description.length > 100) {
       return setError("Description must be 100 characters or less.");
     }
@@ -47,14 +51,14 @@ export default function CreateWatchlist() {
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
-      <h2>Create a Watchlist</h2>
+      <h2>Create Watchlist</h2>
 
       {error && <p className={styles.error}>{error}</p>}
 
       <input
         type="text"
         name="name"
-        placeholder="Watchlist name"
+        placeholder="Watchlist name (max 50 chars)"
         value={formData.name}
         onChange={handleChange}
       />
@@ -77,8 +81,7 @@ export default function CreateWatchlist() {
         />
         Make Public
       </label>
-
-      <Button text="Create Watchlist" type="submit" />
+      <ButtonGroup action={"Create"} />
     </form>
   );
 }

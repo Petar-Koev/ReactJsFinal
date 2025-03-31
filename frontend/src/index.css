@@ -1,7 +1,11 @@
+:root {
+  --font-main: sans-serif !important;
+}
+
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: var(--font-main) !important;
   background-color: #f3e3e2;
   color: black;
 }

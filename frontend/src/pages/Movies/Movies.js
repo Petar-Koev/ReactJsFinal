@@ -5,6 +5,7 @@ import MovieCard from "../../components/movieCard/MovieCard";
 import api from "../../services/api";
 import { sortMovies } from "../../utils/moviesUtils";
 import SortOptions from "../../enums/sortOptions";
+import MovieGenre from "../../enums/movieGenre";
 import styles from "./Movies.module.css";
 
 export default function Movies() {
@@ -55,13 +56,13 @@ export default function Movies() {
           value={selectedGenre}
           onChange={(e) => setSelectedGenre(e.target.value)}
         >
-          <option value="All">All</option>
-          <option value="Drama">Drama</option>
-          <option value="Sci-Fi">Sci-Fi</option>
-          <option value="Mystery">Mystery</option>
-          <option value="Comedy">Comedy</option>
-          <option value="Comedy">Action</option>
-          <option value="Comedy">Crime</option>
+          <option value={MovieGenre.ALL}>{MovieGenre.ALL}</option>
+          <option value={MovieGenre.DRAMA}>{MovieGenre.DRAMA}</option>
+          <option value={MovieGenre.MYSTERY}>{MovieGenre.MYSTERY}</option>
+          <option value={MovieGenre.SCIFI}>{MovieGenre.SCIFI}</option>
+          <option value={MovieGenre.COMEDY}>{MovieGenre.COMEDY}</option>
+          <option value={MovieGenre.ACTION}>{MovieGenre.ACTION}</option>
+          <option value={MovieGenre.CRIME}>{MovieGenre.CRIME}</option>
         </select>
       </div>
 

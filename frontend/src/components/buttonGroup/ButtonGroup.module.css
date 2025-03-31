@@ -1,0 +1,10 @@
+.buttonsArea {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .buttonsArea button,
+  .buttonsArea a {
+    flex: 1; 
+  }

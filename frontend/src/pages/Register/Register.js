@@ -28,6 +28,10 @@ export default function Register() {
     e.preventDefault();
     setError("");
 
+    if (formData.name.length > 50) {
+      return setError("Name must be less than 50 characters.");
+    }
+
     try {
       const { email, password } = formData;
       await api.post("/auth/register", formData);
@@ -50,7 +54,7 @@ export default function Register() {
           <input
             type="text"
             name="name"
-            placeholder="Name"
+            placeholder="Name (max 50 chars)"
             value={formData.name}
             onChange={handleChange}
             required

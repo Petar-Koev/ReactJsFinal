@@ -1,5 +1,5 @@
-import { isInWatchlist } from "../../utils/moviesUtils";
 import { useNavigate } from "react-router-dom";
+import { isInWatchlist } from "../../utils/moviesUtils";
 import useWatchlist from "../../hooks/useWatchlist";
 import styles from "./DropdownMenu.module.css";
 

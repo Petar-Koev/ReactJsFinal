@@ -1,14 +1,14 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home/Home";
-import Login from "./pages/Login/Login";
-import Register from "./pages/Register/Register";
-import Watchlist from "./pages/Watchlist/Watchlist";
 import WatchlistCatalog from "./pages/WatchlistCatalog/WatchlistCatalog";
 import CreateWatchlist from "./pages/CreateWatchlist/CreateWatchlist";
 import EditWatchlist from "./pages/EditWatchlist/EditWatchlist";
-import ContactUs from "./pages/ContactUs";
-import Movies from "./pages/Movies/Movies";
+import Watchlist from "./pages/Watchlist/Watchlist";
+import Register from "./pages/Register/Register";
 import Navbar from "./components/navbar/Navbar";
+import Movies from "./pages/Movies/Movies";
+import ContactUs from "./pages/ContactUs";
+import Login from "./pages/Login/Login";
+import Home from "./pages/Home/Home";
 
 function App() {
   return (

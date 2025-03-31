@@ -1,8 +1,9 @@
 import useWatchlists from "../../hooks/useWatchlist";
 import BackToTopButton from "../../components/backToTopButton/BackToTopButton";
 import WatchlistCard from "../../components/WatchlistCard/WatchlistCard";
-import styles from "./WatchlistCatalog.module.css";
 import useAuth from "../../hooks/useAuth";
+
+import styles from "./WatchlistCatalog.module.css";
 
 export default function WatchlistCatalog() {
   const { publicWatchlists, publicEntries } = useWatchlists();
