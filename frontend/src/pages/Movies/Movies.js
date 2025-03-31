@@ -36,6 +36,20 @@ export default function Movies() {
   return (
     <div className={styles.page}>
       <h2 className={styles.title}>This is our movies catalog!</h2>
+      <div className={styles.filterControls}>
+        <label htmlFor="genreSelect">Filter by Genre:</label>
+        <select
+          id="genreSelect"
+          value={selectedGenre}
+          onChange={(e) => setSelectedGenre(e.target.value)}
+        >
+          {Object.entries(MovieGenre).map(([key, label]) => (
+            <option key={key} value={label}>
+              {label}
+            </option>
+          ))}
+        </select>
+      </div>
       <div className={styles.sortControls}>
         <span>Sort by:</span>
         <Button
@@ -49,23 +63,6 @@ export default function Movies() {
           onClick={() => setSortOption("year")}
         />
       </div>
-      <div className={styles.filterControls}>
-        <label htmlFor="genreSelect">Filter by Genre:</label>
-        <select
-          id="genreSelect"
-          value={selectedGenre}
-          onChange={(e) => setSelectedGenre(e.target.value)}
-        >
-          <option value={MovieGenre.ALL}>{MovieGenre.ALL}</option>
-          <option value={MovieGenre.DRAMA}>{MovieGenre.DRAMA}</option>
-          <option value={MovieGenre.MYSTERY}>{MovieGenre.MYSTERY}</option>
-          <option value={MovieGenre.SCIFI}>{MovieGenre.SCIFI}</option>
-          <option value={MovieGenre.COMEDY}>{MovieGenre.COMEDY}</option>
-          <option value={MovieGenre.ACTION}>{MovieGenre.ACTION}</option>
-          <option value={MovieGenre.CRIME}>{MovieGenre.CRIME}</option>
-        </select>
-      </div>
-
       {sortedMovies.map((movie) => (
         <MovieCard
           key={movie._id}

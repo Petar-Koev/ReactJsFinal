@@ -2,15 +2,7 @@
     padding: 1rem 2rem;
   }
   
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 0.5rem;
-  }
-  
-  .info h2 {
-    font-size: 1.5rem;
+  .info h1 {
     margin-bottom: 0.5rem;
     color: black;
   }
@@ -18,19 +10,19 @@
   .info p {
     color: black;
     margin: 0.5rem 0;
-  }
-
-  .rightSide {
-    margin: 1rem;
-  }
-  
-  .rightSide p {
-    text-align: right;
-    color: black;
-    margin: 0.5rem;
+    font-size: large;
   }
 
   .buttonArea {
     margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
   }
+
+  .divider {
+    border: none;
+    border-top: 2px solid #00424e;
+    margin: 1rem 0;
+    width: 100%;
+  }
+  
   

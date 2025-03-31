@@ -32,41 +32,32 @@ export default function Watchlist() {
 
   return (
     <div className={styles.page}>
-      <div className={styles.header}>
-        <div className={styles.info}>
-          <h2>{currentWatchlist.name}</h2>
-          <p>Description: {currentWatchlist.description}</p>
-          <h3>Added movies: </h3>
-        </div>
-        <div className={styles.rightSide}>
-          <p>
-            Type:
-            <strong>
-              {currentWatchlist.type === "private" ? "Private" : "Public"}
-            </strong>
-          </p>
-          <p>
-            Movie count: <strong>{currentEntries.length}</strong>
-          </p>
-          <p>
-            Created on{" "}
-            <strong>
-              {new Date(currentWatchlist.createdAt).toLocaleDateString()}
-            </strong>
-          </p>
-        </div>
+      <div className={styles.info}>
+        <h1>{currentWatchlist.name}</h1>
+        <h3>{currentWatchlist.description}</h3>
+        <p>{currentWatchlist.type === "private" ? "Private" : "Public"}</p>
+        <p>{currentEntries.length} Movies</p>
+        <p>
+          Created on{" "}
+          <strong>
+            {new Date(currentWatchlist.createdAt).toLocaleDateString()}
+          </strong>
+        </p>
       </div>
-
+      <hr className={styles.divider} />
+      <h3>Added movies: </h3>
       <div className={styles.entries}>
-        {currentEntries.map((entry) => (
-          <EntryCard
-            key={entry._id}
-            entry={entry}
-            onToggleWatched={() => toggleWatched(entry._id, entry.watched)}
-            onRemove={() => removeEntry(entry._id)}
-            isPublic={isPublic}
-          />
-        ))}
+        {[...currentEntries]
+          .sort((a, b) => a.watched - b.watched)
+          .map((entry) => (
+            <EntryCard
+              key={entry._id}
+              entry={entry}
+              onToggleWatched={() => toggleWatched(entry._id, entry.watched)}
+              onRemove={() => removeEntry(entry._id)}
+              isPublic={isPublic}
+            />
+          ))}
       </div>
       {!isPublic && (
         <div className={styles.buttonArea}>
