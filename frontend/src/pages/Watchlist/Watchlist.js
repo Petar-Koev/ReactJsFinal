@@ -1,4 +1,4 @@
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useParams, useNavigate } from "react-router-dom";
 import useWatchlists from "../../hooks/useWatchlist";
 import EntryCard from "../../components/entryCard/EntryCard";
 import Button from "../../components/button/Button";
@@ -16,6 +16,7 @@ export default function Watchlist() {
     publicEntries,
   } = useWatchlists();
 
+  const navigate = useNavigate();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const isPublic = searchParams.get("isPublic") === "true";
@@ -24,7 +25,9 @@ export default function Watchlist() {
     publicWatchlists.find((w) => w._id === id) ||
     userWatchlists.find((w) => w._id === id);
 
-  if (!currentWatchlist) return <p>Loading...</p>;
+  if (!currentWatchlist) {
+    return navigate("/notFound");
+  }
 
   const currentEntries = isPublic
     ? publicEntries.filter((e) => e.watchlistId === id)

@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import useAuth from "../hooks/useAuth";
 import api from "../services/api";
+import { toast } from "react-toastify";
 
 const WatchlistContext = createContext();
 
@@ -60,11 +61,13 @@ export function WatchlistProvider({ children }) {
       movieId,
     });
     setEntries((prev) => [...prev, res.data]);
+    toast.info("Movie added successfully!");
   };
 
   const removeEntry = async (entryId) => {
     await api.delete(`/watchlists/entries/${entryId}`);
     setEntries((prev) => prev.filter((e) => e._id !== entryId));
+    toast.info("Movie removed successfully!");
   };
 
   const toggleWatched = async (entryId, currentStatus) => {
@@ -85,12 +88,14 @@ export function WatchlistProvider({ children }) {
   const createWatchlist = async (data) => {
     const res = await api.post("/watchlists", data);
     setUserWatchlists((prev) => [...prev, res.data]);
+    toast.success("Watchlist created successfully!");
     return res.data;
   };
 
   const updateWatchlist = async (id, data) => {
     const res = await api.put(`/watchlists/${id}`, data);
     setUserWatchlists((prev) => prev.map((w) => (w._id === id ? res.data : w)));
+    toast.info("Watchlist updated!");
     return res.data;
   };
 
@@ -99,6 +104,7 @@ export function WatchlistProvider({ children }) {
       await api.delete(`/watchlists/${id}`);
       setUserWatchlists((prev) => prev.filter((w) => w._id !== id));
       setEntries((prev) => prev.filter((e) => e.watchlistId !== id));
+      toast.warn("Watchlist deleted.");
     } catch (err) {
       console.error("Failed to delete watchlist", err);
     }
