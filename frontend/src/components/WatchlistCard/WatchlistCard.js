@@ -36,17 +36,30 @@ export default function WatchlistCard({ list, entries, isPublic }) {
 
   return (
     <div className={styles.card}>
-      <p className={styles.name}>{list.name}</p>
       <div className={styles.posterRow}>{posters}</div>
+      <div className={styles.info}>
+        <p className={styles.name}>{list.name}</p>
+        <p>Movies: {entries.length}</p>
+        <p>{list.type === "private" ? "Private" : "Public"}</p>
+      </div>
       <div className={styles.buttons}>
         <Button
           text="Open"
           to={`/watchlists/${list._id}?isPublic=${isPublic}`}
+          className={styles.button}
         />
         {!isPublic && (
           <>
-            <Button text="Edit" to={`/watchlists/${list._id}/edit`} />
-            <Button text="Delete" onClick={handleDelete} />
+            <Button
+              className={styles.button}
+              text="Edit"
+              to={`/watchlists/${list._id}/edit`}
+            />
+            <Button
+              className={styles.button}
+              text="Delete"
+              onClick={handleDelete}
+            />
           </>
         )}
       </div>

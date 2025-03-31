@@ -20,15 +20,7 @@ export default function Home() {
           </div>
         ) : (
           <>
-            <div className={styles.addWatchlistMain}>
-              <h2 className={styles.addWatchlistTitle}>
-                In a need for more watchlists?
-              </h2>
-              <Button text="Add list" to="/create" />
-            </div>
-
             <h1 className={styles.title}>Your current watchlists:</h1>
-
             <div className={styles.cards}>
               {userWatchlists.map((list) => {
                 const listEntries = entries.filter(
@@ -43,6 +35,9 @@ export default function Home() {
                   />
                 );
               })}
+            </div>
+            <div className={styles.buttonArea}>
+              <Button text="Add watchlist" to="/create" />
             </div>
           </>
         )}

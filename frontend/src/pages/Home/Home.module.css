@@ -37,15 +37,7 @@
     padding-left: 2rem;
   }
 
-  .addWatchlistMain {
-    display: flex;
-    flex-direction: column;
+  .buttonArea {
+    padding: 1rem 2rem;
   }
-
-  .addWatchlistTitle {
-    text-align: center;
-    color: black;
-    margin-bottom: 0px;
-  }
-  
   
