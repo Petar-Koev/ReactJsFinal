@@ -1,0 +1,23 @@
+.page {
+    padding: 2rem;
+    margin-top: 2rem;
+    max-width: 600px;
+    margin: 1rem auto;
+    color: white;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    text-align: center;
+    background-color: #1b2e3c;
+  }
+  
+  .info {
+    margin: 1.5rem 0;
+  }
+  
+  .divider {
+    border: none;
+    border-top: 2px solid #74112f;
+    margin: 1rem 0;
+    width: 100%;
+  }
+  
