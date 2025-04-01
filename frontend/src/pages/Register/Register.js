@@ -2,30 +2,17 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import api from "../../services/api";
-import Button from "../../components/button/Button";
+import FormBase from "../../components/formBase/FormBase";
+import FormType from "../../enums/formType";
 import styles from "./../Login/Login.module.css";
 
 export default function Register() {
   const { login } = useAuth();
   const navigate = useNavigate();
 
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    password: "",
-  });
-
   const [error, setError] = useState("");
 
-  const handleChange = (e) => {
-    setFormData((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (formData) => {
     setError("");
 
     if (formData.name.length > 50) {
@@ -49,42 +36,16 @@ export default function Register() {
         <h2>Register</h2>
 
         {error && <p className={styles.error}>{error}</p>}
-
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name="name"
-            placeholder="Name (max 50 chars)"
-            value={formData.name}
-            onChange={handleChange}
-            required
-          />
-
-          <input
-            type="email"
-            name="email"
-            placeholder="E-mail"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            value={formData.password}
-            onChange={handleChange}
-            required
-          />
-
-          <Button text="Sign Up" type="submit" />
-        </form>
+        <FormBase
+          type={FormType.REGISTER}
+          onSubmit={handleSubmit}
+          actionText="Sign Up"
+        />
         <div className={styles.signupSide}>
           <p>
             Already have an account?
             <Link className={styles.link} to="/login">
-              Sign In
+              Sign Up
             </Link>
           </p>
         </div>

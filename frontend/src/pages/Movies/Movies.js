@@ -74,7 +74,7 @@ export default function Movies() {
             className={
               sortOption === SortOptions.FAVORITES ? styles.active : ""
             }
-            text={"Loved"}
+            text={"Liked"}
             onClick={() => setSortOption(SortOptions.FAVORITES)}
           />
         )}

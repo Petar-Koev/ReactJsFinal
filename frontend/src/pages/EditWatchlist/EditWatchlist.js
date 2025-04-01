@@ -1,45 +1,29 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import useWatchlist from "../../hooks/useWatchlist";
-import ButtonGroup from "../../components/buttonGroup/ButtonGroup";
+import FormBase from "../../components/formBase/FormBase";
+import FormType from "../../enums/formType";
+import { isDuplicateName } from "../../utils/utils";
 import styles from "../CreateWatchlist/CreateWatchlist.module.css";
 
 export default function EditWatchlist() {
   const { userWatchlists, updateWatchlist } = useWatchlist();
+  const [error, setError] = useState("");
   const { id } = useParams();
   const navigate = useNavigate();
 
   const watchlist = userWatchlists.find((w) => w._id === id);
 
-  const [formData, setFormData] = useState({
-    name: "",
-    description: "",
-    type: "private",
-  });
-  const [error, setError] = useState("");
-
-  useEffect(() => {
-    if (watchlist) {
-      const { name, description, type } = watchlist;
-      setFormData({ name, description, type });
-    }
-  }, [watchlist]);
-
   if (!watchlist) {
     return navigate("/notFound");
   }
 
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: type === "checkbox" ? (checked ? "public" : "private") : value,
-    }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (formData) => {
     setError("");
+
+    if (isDuplicateName(userWatchlists, formData.name)) {
+      return setError("A watchlist with this name already exists.");
+    }
 
     if (formData.name.trim() === "" || formData.description.trim() === "") {
       return setError("All fields are required.");
@@ -65,38 +49,22 @@ export default function EditWatchlist() {
   if (!watchlist) return <p>Loading...</p>;
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit}>
-      <h2>Edit Watchlist</h2>
+    <div className={styles.page}>
+      <div className={styles.form}>
+        <h2>Update Watchlist</h2>
 
-      {error && <p className={styles.error}>{error}</p>}
-
-      <input
-        type="text"
-        name="name"
-        placeholder="Watchlist name (max 50 chars)"
-        value={formData.name}
-        onChange={handleChange}
-      />
-
-      <textarea
-        name="description"
-        placeholder="Description (max 100 chars)"
-        value={formData.description}
-        onChange={handleChange}
-        maxLength={100}
-      />
-
-      <label className={styles.checkbox}>
-        <input
-          type="checkbox"
-          name="type"
-          checked={formData.type === "public"}
-          onChange={handleChange}
-          className={styles.check}
+        {error && <p className={styles.error}>{error}</p>}
+        <FormBase
+          type={FormType.EDIT}
+          onSubmit={handleSubmit}
+          actionText="Update"
+          initialData={{
+            name: watchlist?.name || "",
+            description: watchlist?.description || "",
+            type: watchlist?.type || "private",
+          }}
         />
-        Make Public
-      </label>
-      <ButtonGroup action={"Update"} />
-    </form>
+      </div>
+    </div>
   );
 }

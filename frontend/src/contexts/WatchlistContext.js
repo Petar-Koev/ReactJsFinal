@@ -82,21 +82,34 @@ export function WatchlistProvider({ children }) {
       );
     } catch (err) {
       console.error("Failed to toggle watched", err);
+      toast.error("Failed to mark as watched");
     }
   };
 
   const createWatchlist = async (data) => {
-    const res = await api.post("/watchlists", data);
-    setUserWatchlists((prev) => [...prev, res.data]);
-    toast.success("Watchlist created successfully!");
-    return res.data;
+    try {
+      const res = await api.post("/watchlists", data);
+      setUserWatchlists((prev) => [...prev, res.data]);
+      toast.success("Watchlist created successfully!");
+      return res.data;
+    } catch (error) {
+      console.error("Failed to create watchlist", error);
+      toast.error("Failed to create watchlist");
+    }
   };
 
   const updateWatchlist = async (id, data) => {
-    const res = await api.put(`/watchlists/${id}`, data);
-    setUserWatchlists((prev) => prev.map((w) => (w._id === id ? res.data : w)));
-    toast.info("Watchlist updated!");
-    return res.data;
+    try {
+      const res = await api.put(`/watchlists/${id}`, data);
+      setUserWatchlists((prev) =>
+        prev.map((w) => (w._id === id ? res.data : w))
+      );
+      toast.info("Watchlist updated!");
+      return res.data;
+    } catch (error) {
+      console.error("Failed to update watchlist", error);
+      toast.error("Failed to update watchlist");
+    }
   };
 
   const deleteWatchlist = async (id) => {
@@ -107,6 +120,7 @@ export function WatchlistProvider({ children }) {
       toast.warn("Watchlist deleted.");
     } catch (err) {
       console.error("Failed to delete watchlist", err);
+      toast.error("Failed to delete watchlist");
     }
   };
 
