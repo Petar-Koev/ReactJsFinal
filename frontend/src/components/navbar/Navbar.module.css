@@ -20,3 +20,27 @@
 .navLink:hover {
   color: #c92052;
 }
+
+@media (max-width: 900px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+    gap: 0.5rem;
+  }
+
+  .navLeft,
+  .navRight {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .navLeft a,
+  .navRight a {
+    display: block;
+    margin: 0.3rem 0;
+    font-size: 1rem;
+  }
+}
+
