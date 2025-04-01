@@ -7,12 +7,15 @@ import { sortMovies } from "../../utils/moviesUtils";
 import SortOptions from "../../enums/sortOptions";
 import MovieGenre from "../../enums/movieGenre";
 import styles from "./Movies.module.css";
+import useAuth from "../../hooks/useAuth";
 
 export default function Movies() {
   const [movies, setMovies] = useState([]);
   const [openDropdownId, setOpenDropdownId] = useState(null);
   const [sortOption, setSortOption] = useState("title");
   const [selectedGenre, setSelectedGenre] = useState("All");
+
+  const { user } = useAuth();
 
   const filteredMovies =
     selectedGenre === "All"
@@ -31,7 +34,11 @@ export default function Movies() {
     fetchMovies();
   }, []);
 
-  const sortedMovies = sortMovies(filteredMovies, sortOption);
+  const sortedMovies = sortMovies(
+    filteredMovies,
+    sortOption,
+    user.likedMovies || []
+  );
 
   return (
     <div className={styles.page}>
@@ -55,12 +62,17 @@ export default function Movies() {
         <Button
           className={sortOption === SortOptions.TITLE ? styles.active : ""}
           text={"Title"}
-          onClick={() => setSortOption("title")}
+          onClick={() => setSortOption(SortOptions.TITLE)}
         />
         <Button
           className={sortOption === SortOptions.YEAR ? styles.active : ""}
           text={"Year"}
-          onClick={() => setSortOption("year")}
+          onClick={() => setSortOption(SortOptions.YEAR)}
+        />
+        <Button
+          className={sortOption === SortOptions.FAVORITES ? styles.active : ""}
+          text={"Loved"}
+          onClick={() => setSortOption(SortOptions.FAVORITES)}
         />
       </div>
       {sortedMovies.map((movie) => (

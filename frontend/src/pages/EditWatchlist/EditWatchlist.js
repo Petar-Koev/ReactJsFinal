@@ -25,6 +25,10 @@ export default function EditWatchlist() {
     }
   }, [watchlist]);
 
+  if (!watchlist) {
+    return navigate("/notFound");
+  }
+
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData((prev) => ({

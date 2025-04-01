@@ -1,7 +1,7 @@
 const SortOptions = {
   TITLE: "title",
   YEAR: "year",
-  GENRE: "genre",
+  FAVORITES: "favorites",
 };
 
 export default SortOptions;
