@@ -14,7 +14,7 @@ export default function Home() {
       <>
         {userWatchlists.length === 0 ? (
           <div className={styles.homeContainer}>
-            <h1>It looks like you don't have any watchlists...</h1>
+            <h1>It looks like you have no watchlists...</h1>
             <p>Create your first!</p>
             <Button text="Add list" to="/create" />
           </div>
@@ -50,13 +50,19 @@ export default function Home() {
   return (
     <div className={styles.homeContainer}>
       <h1>
-        Welcome to <span className={styles.brand}>"Watch Me Later"</span>
+        Welcome to{" "}
+        <span className={styles.brand}>
+          {" "}
+          <strong>"Watch Me Later"</strong>
+        </span>
       </h1>
+      <hr className={styles.divider} />
       <p>Your friends told you about a new exciting movie?</p>
       <p>And you want to watch it at any cost?</p>
-
-      <Button text="Sign Up" to="/register" />
-
+      <div className={styles.signUpInArea}>
+        <Button text="Sign Up" to="/register" />
+        <Button text="Sign In" to="/login" />
+      </div>
       <p className={styles.subtext}>Add it to your list and enjoy later!</p>
     </div>
   );

@@ -15,7 +15,7 @@ export default function Movies() {
   const [sortOption, setSortOption] = useState("title");
   const [selectedGenre, setSelectedGenre] = useState("All");
 
-  const { user } = useAuth();
+  const { user, isAuthenticated } = useAuth();
 
   const filteredMovies =
     selectedGenre === "All"
@@ -37,7 +37,7 @@ export default function Movies() {
   const sortedMovies = sortMovies(
     filteredMovies,
     sortOption,
-    user.likedMovies || []
+    isAuthenticated ? user.likedMovies || [] : []
   );
 
   return (
@@ -69,11 +69,15 @@ export default function Movies() {
           text={"Year"}
           onClick={() => setSortOption(SortOptions.YEAR)}
         />
-        <Button
-          className={sortOption === SortOptions.FAVORITES ? styles.active : ""}
-          text={"Loved"}
-          onClick={() => setSortOption(SortOptions.FAVORITES)}
-        />
+        {isAuthenticated && (
+          <Button
+            className={
+              sortOption === SortOptions.FAVORITES ? styles.active : ""
+            }
+            text={"Loved"}
+            onClick={() => setSortOption(SortOptions.FAVORITES)}
+          />
+        )}
       </div>
       {sortedMovies.map((movie) => (
         <MovieCard
