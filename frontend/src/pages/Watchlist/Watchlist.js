@@ -1,9 +1,12 @@
 import { useLocation, useParams, useNavigate } from "react-router-dom";
-import useWatchlists from "../../hooks/useWatchlist";
-import EntryCard from "../../components/entryCard/EntryCard";
-import Button from "../../components/button/Button";
+
 import BackToTopButton from "../../components/backToTopButton/BackToTopButton";
+import EntryCard from "../../components/entryCard/EntryCard";
+import useWatchlists from "../../hooks/useWatchlist";
+import Button from "../../components/button/Button";
+
 import styles from "./Watchlist.module.css";
+import WatchlistInfo from "../../components/watchlistInfo/WatchlistInfo";
 
 export default function Watchlist() {
   const { id } = useParams();
@@ -35,18 +38,7 @@ export default function Watchlist() {
 
   return (
     <div className={styles.page}>
-      <div className={styles.info}>
-        <h1>{currentWatchlist.name}</h1>
-        <h3>{currentWatchlist.description}</h3>
-        <p>{currentWatchlist.type === "private" ? "Private" : "Public"}</p>
-        <p>{currentEntries.length} Movies</p>
-        <p>
-          Created on{" "}
-          <strong>
-            {new Date(currentWatchlist.createdAt).toLocaleDateString()}
-          </strong>
-        </p>
-      </div>
+      <WatchlistInfo watchlist={currentWatchlist} entries={currentEntries} />
       <hr className={styles.divider} />
       <h3>Added movies: </h3>
       <div className={styles.entries}>

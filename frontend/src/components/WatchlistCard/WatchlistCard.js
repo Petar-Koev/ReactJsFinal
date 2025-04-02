@@ -1,5 +1,6 @@
-import Button from "../button/Button";
 import useWatchlists from "../../hooks/useWatchlist";
+import Button from "../button/Button";
+
 import styles from "./WatchlistCard.module.css";
 
 export default function WatchlistCard({ list, entries, isPublic }) {

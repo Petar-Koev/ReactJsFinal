@@ -1,9 +1,11 @@
-import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import api from "../../services/api";
-import useAuth from "../../hooks/useAuth";
+import { useState } from "react";
+
 import FormBase from "../../components/formBase/FormBase";
 import FormType from "../../enums/formType";
+import useAuth from "../../hooks/useAuth";
+import api from "../../services/api";
+
 import styles from "./Login.module.css";
 
 export default function Login() {
@@ -27,7 +29,6 @@ export default function Login() {
     <div className={styles.page}>
       <div className={styles.formBox}>
         <h2>Log In</h2>
-
         {error && <p className={styles.error}>{error}</p>}
         <FormBase
           type={FormType.LOGIN}

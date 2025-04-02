@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
+
 import BackToTopButton from "../../components/backToTopButton/BackToTopButton";
-import Button from "../../components/button/Button";
+import FilterControls from "../../components/filterControls/FilterControls";
 import MovieCard from "../../components/movieCard/MovieCard";
-import api from "../../services/api";
 import { sortMovies } from "../../utils/moviesUtils";
-import SortOptions from "../../enums/sortOptions";
-import MovieGenre from "../../enums/movieGenre";
-import styles from "./Movies.module.css";
 import useAuth from "../../hooks/useAuth";
+import api from "../../services/api";
+
+import styles from "./Movies.module.css";
+import SortControls from "../../components/sortControls/SortControls";
 
 export default function Movies() {
   const [movies, setMovies] = useState([]);
@@ -43,42 +44,12 @@ export default function Movies() {
   return (
     <div className={styles.page}>
       <h2 className={styles.title}>This is our movies catalog!</h2>
-      <div className={styles.filterControls}>
-        <label htmlFor="genreSelect">Filter by Genre:</label>
-        <select
-          id="genreSelect"
-          value={selectedGenre}
-          onChange={(e) => setSelectedGenre(e.target.value)}
-        >
-          {Object.entries(MovieGenre).map(([key, label]) => (
-            <option key={key} value={label}>
-              {label}
-            </option>
-          ))}
-        </select>
-      </div>
-      <div className={styles.sortControls}>
-        <span>Sort by:</span>
-        <Button
-          className={sortOption === SortOptions.TITLE ? styles.active : ""}
-          text={"Title"}
-          onClick={() => setSortOption(SortOptions.TITLE)}
-        />
-        <Button
-          className={sortOption === SortOptions.YEAR ? styles.active : ""}
-          text={"Year"}
-          onClick={() => setSortOption(SortOptions.YEAR)}
-        />
-        {isAuthenticated && (
-          <Button
-            className={
-              sortOption === SortOptions.FAVORITES ? styles.active : ""
-            }
-            text={"Liked"}
-            onClick={() => setSortOption(SortOptions.FAVORITES)}
-          />
-        )}
-      </div>
+      <FilterControls genre={selectedGenre} setGenre={setSelectedGenre} />
+      <SortControls
+        sortOption={sortOption}
+        setSort={setSortOption}
+        isAuthenticated={isAuthenticated}
+      />
       {sortedMovies.map((movie) => (
         <MovieCard
           key={movie._id}

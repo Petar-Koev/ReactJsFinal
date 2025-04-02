@@ -1,0 +1,17 @@
+.filterControls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 1rem 0;
+    color: black;
+    font-weight: bold;
+  }
+  
+  .filterControls select {
+    padding: 0.3rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    background-color: #00424e;
+    color: #fff;
+    font-family: sans-serif;
+  }

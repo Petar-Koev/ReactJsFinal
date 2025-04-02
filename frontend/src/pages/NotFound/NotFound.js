@@ -1,5 +1,6 @@
-import styles from "./NotFound.module.css";
 import notFoundImage from "../../assets/imgs/notFound.jpg";
+
+import styles from "./NotFound.module.css";
 
 export default function NotFound() {
   return (

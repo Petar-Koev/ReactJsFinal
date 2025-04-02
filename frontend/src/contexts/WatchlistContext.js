@@ -1,7 +1,8 @@
 import { createContext, useEffect, useState } from "react";
+
 import useAuth from "../hooks/useAuth";
-import api from "../services/api";
 import { toast } from "react-toastify";
+import api from "../services/api";
 
 const WatchlistContext = createContext();
 

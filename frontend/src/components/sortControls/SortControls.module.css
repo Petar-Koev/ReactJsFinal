@@ -1,0 +1,26 @@
+.sortControls {
+    align-items: center;
+    margin: 1rem 0;
+    font-weight: bold;
+    color: #f3e3e2;
+  }
+
+  .sortControls button {
+    margin-right: 0.5rem;
+    width: 100px;               
+    text-align: center;
+  }
+  .sortControls button:last-child {
+    margin-right: 0;
+  }
+  
+  .sortControls span {
+    margin-right: 0.5rem;
+    color:black;
+  }
+  
+  .sortControls button.active {
+    background-color: #00424e;
+    border-color: #00424e;
+    color: #fff;
+  }

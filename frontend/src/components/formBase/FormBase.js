@@ -1,7 +1,9 @@
 import { useState } from "react";
-import FormType from "../../enums/formType";
+
 import ButtonGroup from "../../components/buttonGroup/ButtonGroup";
+import FormType from "../../enums/formType";
 import Button from "../button/Button";
+
 import styles from "./FormBase.module.css";
 
 export default function FormBase({

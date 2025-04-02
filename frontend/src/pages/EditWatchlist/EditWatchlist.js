@@ -1,9 +1,11 @@
-import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import useWatchlist from "../../hooks/useWatchlist";
+import { useState } from "react";
+
 import FormBase from "../../components/formBase/FormBase";
-import FormType from "../../enums/formType";
+import useWatchlist from "../../hooks/useWatchlist";
 import { isDuplicateName } from "../../utils/utils";
+import FormType from "../../enums/formType";
+
 import styles from "../CreateWatchlist/CreateWatchlist.module.css";
 
 export default function EditWatchlist() {
@@ -45,8 +47,6 @@ export default function EditWatchlist() {
       setError("Update failed.");
     }
   };
-
-  if (!watchlist) return <p>Loading...</p>;
 
   return (
     <div className={styles.page}>

@@ -1,6 +1,6 @@
-import useWatchlists from "../../hooks/useWatchlist";
 import BackToTopButton from "../../components/backToTopButton/BackToTopButton";
 import WatchlistCard from "../../components/WatchlistCard/WatchlistCard";
+import useWatchlists from "../../hooks/useWatchlist";
 import useAuth from "../../hooks/useAuth";
 
 import styles from "./WatchlistCatalog.module.css";
@@ -9,6 +9,7 @@ export default function WatchlistCatalog() {
   const { publicWatchlists, publicEntries } = useWatchlists();
   const { user, isAuthenticated } = useAuth();
 
+  // Watchlists from other users only.
   const otherPublicWatchlists = isAuthenticated
     ? publicWatchlists.filter((watchlist) => watchlist.user._id !== user._id)
     : [];

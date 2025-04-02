@@ -1,0 +1,10 @@
+.info h1 {
+    margin-bottom: 0.5rem;
+    color: black;
+  }
+  
+  .info p {
+    color: black;
+    margin: 0.5rem 0;
+    font-size: large;
+  }

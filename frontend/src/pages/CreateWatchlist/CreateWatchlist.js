@@ -1,10 +1,12 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import useWatchlist from "../../hooks/useWatchlist";
-import styles from "./CreateWatchlist.module.css";
+import { useState } from "react";
+
 import FormBase from "../../components/formBase/FormBase";
-import FormType from "../../enums/formType";
+import useWatchlist from "../../hooks/useWatchlist";
 import { isDuplicateName } from "../../utils/utils";
+import FormType from "../../enums/formType";
+
+import styles from "./CreateWatchlist.module.css";
 
 export default function CreateWatchlist() {
   const [error, setError] = useState("");

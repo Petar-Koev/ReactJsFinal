@@ -1,8 +1,9 @@
+import BackToTopButton from "../../components/backToTopButton/BackToTopButton";
+import WatchlistCard from "../../components/WatchlistCard/WatchlistCard";
+import useWatchlists from "../../hooks/useWatchlist";
 import Button from "../../components/button/Button";
 import useAuth from "../../hooks/useAuth";
-import useWatchlists from "../../hooks/useWatchlist";
-import WatchlistCard from "../../components/WatchlistCard/WatchlistCard";
-import BackToTopButton from "../../components/backToTopButton/BackToTopButton";
+
 import styles from "./Home.module.css";
 
 export default function Home() {

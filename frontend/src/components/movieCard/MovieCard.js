@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
+import MovieDetailsList from "../MovieDetailsList/MovieDetailsList";
+import DropdownMenu from "../dropdownMenu/DropdownMenu";
+import useWatchlist from "../../hooks/useWatchlist";
 import useAuth from "../../hooks/useAuth";
 import Button from "../button/Button";
 import api from "../../services/api";
-import useWatchlist from "../../hooks/useWatchlist";
-import MovieDetailsList from "../MovieDetailsList/MovieDetailsList";
-import DropdownMenu from "../dropdownMenu/DropdownMenu";
 
 import styles from "./MovieCard.module.css";
 

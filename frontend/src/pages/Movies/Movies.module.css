@@ -8,51 +8,7 @@
     margin-bottom: 2rem;
     color: black;
   }
-  
-  .sortControls {
-    align-items: center;
-    margin: 1rem 0;
-    font-weight: bold;
-    color: #f3e3e2;
-  }
 
-  .sortControls button {
-    margin-right: 0.5rem;
-    width: 100px;               
-    text-align: center;
-  }
-  .sortControls button:last-child {
-    margin-right: 0;
-  }
-  
-  .sortControls span {
-    margin-right: 0.5rem;
-    color:black;
-  }
-  
-  .sortControls button.active {
-    background-color: #00424e;
-    border-color: #00424e;
-    color: #fff;
-  }
-
-  .filterControls {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin: 1rem 0;
-    color: black;
-    font-weight: bold;
-  }
-  
-  .filterControls select {
-    padding: 0.3rem;
-    border-radius: 6px;
-    font-size: 1rem;
-    background-color: #00424e;
-    color: #fff;
-    font-family: sans-serif;
-  }
   
   
   
