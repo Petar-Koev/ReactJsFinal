@@ -23,7 +23,7 @@ export default function EditWatchlist() {
   const handleSubmit = async (formData) => {
     setError("");
 
-    if (isDuplicateName(userWatchlists, formData.name)) {
+    if (isDuplicateName(userWatchlists, formData.name, watchlist._id)) {
       return setError("A watchlist with this name already exists.");
     }
 

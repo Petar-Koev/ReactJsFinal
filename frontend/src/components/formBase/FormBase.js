@@ -46,7 +46,6 @@ export default function FormBase({
           placeholder="Name"
           value={formData.name}
           onChange={handleChange}
-          required
         />
       )}
 
@@ -58,7 +57,6 @@ export default function FormBase({
             placeholder="Email"
             value={formData.email}
             onChange={handleChange}
-            required
           />
           <input
             type="password"
@@ -66,7 +64,6 @@ export default function FormBase({
             placeholder="Password"
             value={formData.password}
             onChange={handleChange}
-            required
           />
         </>
       )}
@@ -79,7 +76,6 @@ export default function FormBase({
             value={formData.description}
             onChange={handleChange}
             maxLength={100}
-            required
           />
           <label className={styles.checkbox}>
             <input

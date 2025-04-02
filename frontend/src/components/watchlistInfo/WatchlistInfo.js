@@ -8,7 +8,8 @@ export default function WatchlistInfo({ watchlist, entries }) {
       <p>{watchlist.type === "private" ? "Private" : "Public"}</p>
       {}
       <p>
-        {entries.length} {entries.length > 1 ? "Movies" : "Movie"}
+        {entries.length}{" "}
+        {entries.length > 1 || entries.length === 0 ? "Movies" : "Movie"}
       </p>
       <p>
         Created on{" "}

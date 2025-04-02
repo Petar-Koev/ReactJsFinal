@@ -21,6 +21,10 @@ export default function Register() {
       return setError("Name must be less than 50 characters.");
     }
 
+    if (formData.email.trim() === "" || formData.password.trim() === "") {
+      return setError("All fields are required.");
+    }
+
     try {
       const { email, password } = formData;
       await api.post("/auth/register", formData);

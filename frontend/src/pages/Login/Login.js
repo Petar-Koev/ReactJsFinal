@@ -16,6 +16,10 @@ export default function Login() {
   const handleSubmit = async (formData) => {
     setError("");
 
+    if (formData.email.trim() === "" || formData.password.trim() === "") {
+      return setError("All fields are required.");
+    }
+
     try {
       const res = await api.post("/auth/login", formData);
       login(res.data.user, res.data.token);
